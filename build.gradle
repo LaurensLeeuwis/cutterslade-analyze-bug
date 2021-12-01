@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'ca.cutterslade.analyze' version '1.8.2'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project('first')
+    implementation project('second')
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task printClasspath {
+    doLast {
+        configurations.testRuntimeClasspath.each { println it }
+    }
+}
